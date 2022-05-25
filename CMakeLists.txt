@@ -24,33 +24,27 @@ find_package(builtin_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
+rosidl_generate_interfaces(
+  ${PROJECT_NAME}
   msg/ImageMetaData.msg
   DEPENDENCIES builtin_interfaces std_msgs
-  ADD_LINTER_TESTS
-  )
-
+  ADD_LINTER_TESTS)
 
 if(BUILD_TESTING)
   find_package(ament_cmake REQUIRED)
   find_package(ament_cmake_copyright REQUIRED)
-  find_package(ament_cmake_cppcheck REQUIRED)
-  find_package(ament_cmake_cpplint REQUIRED)
   find_package(ament_cmake_flake8 REQUIRED)
   find_package(ament_cmake_lint_cmake REQUIRED)
   find_package(ament_cmake_pep257 REQUIRED)
-  find_package(ament_cmake_uncrustify REQUIRED)
   find_package(ament_cmake_xmllint REQUIRED)
 
   ament_copyright()
-  ament_cppcheck(LANGUAGE c++)
-  ament_cpplint(FILTERS "-build/include,-runtime/indentation_namespace")
   ament_flake8()
-  ament_lint_cmake()
   ament_pep257()
-  ament_uncrustify()
   ament_xmllint()
+  ament_lint_cmake()
 endif()
+
 
 ament_export_dependencies(rosidl_default_runtime)
 
